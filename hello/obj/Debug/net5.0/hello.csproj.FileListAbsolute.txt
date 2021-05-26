@@ -1,0 +1,16 @@
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\hello.exe
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\hello.deps.json
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\hello.runtimeconfig.json
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\hello.runtimeconfig.dev.json
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\hello.dll
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\ref\hello.dll
+D:\01_Projetos\CSharp_Dotnet\hello\bin\Debug\net5.0\hello.pdb
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.csprojAssemblyReference.cache
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.GeneratedMSBuildEditorConfig.editorconfig
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.AssemblyInfoInputs.cache
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.AssemblyInfo.cs
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.csproj.CoreCompileInputs.cache
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.dll
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\ref\hello.dll
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.pdb
+D:\01_Projetos\CSharp_Dotnet\hello\obj\Debug\net5.0\hello.genruntimeconfig.cache
