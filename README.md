@@ -1,5 +1,5 @@
 # Curso CSharp
 
- - Hello World
- - Tarefa 01 - O chamado da aventura
+- [Hello World](https://github.com/crisslemoss/curso_csharp/tree/main/hello )
+- [Tarefa 01](https://github.com/crisslemoss/curso_csharp/tree/main/Tarefa_01)
  
