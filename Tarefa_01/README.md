@@ -10,7 +10,7 @@ URL padrão: https://localhost:5001/swagger/index.html
 
 # Resolução
 
-- Após a criação do repositorio no Github e clonar o repositorio no Github Desktop, abri o diretorio da tarefa e rodei os seguintes comandos no terminal
+- Após a criação do repositorio no Github e clonar o repositorio no Github Desktop, abrir o diretorio da tarefa e executar os seguintes comandos no terminal..
 - Criar o projeto webapi
 > dotnet new webapi
 - Executar o projeto
