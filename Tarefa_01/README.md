@@ -8,7 +8,13 @@ URL padrão: https://localhost:5001/swagger/index.html
 - Modifique o método do Controller para ver a diferença que isso causa na API
 - Envie o link do seu repositório no grupo ou para o professor
 
-# Resolução :black_nib:
+### 🛠 Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [.NET](https://dotnet.microsoft.com/download) e [GitHubDesktop](https://desktop.github.com/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+### Resolução :black_nib:
 
 - Após a criação do repositorio no Github e clonar o repositorio no Github Desktop, abrir o diretorio da tarefa e executar os seguintes comandos no terminal..
 - :boom: Criar o projeto webapi
