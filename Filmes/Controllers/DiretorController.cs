@@ -14,12 +14,22 @@ public class DiretorController : ControllerBase
         _context = context;
     }
 
+    //GET api/diretores
     [HttpGet]
     public async Task<List<Diretor>> Get()
     {
         return await _context.Diretores.ToListAsync();
     }
 
+    //GET api/diretores/1
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Diretor>> Get(long id)
+    {
+        var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == id);
+        return Ok(diretor);
+    }
+
+    //POST api/diretores
     [HttpPost]
     public async Task<ActionResult<Diretor>> Post([FromBody] Diretor diretor)
     {
@@ -29,20 +39,25 @@ public class DiretorController : ControllerBase
         return Ok(diretor);
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Diretor>> Get(int id)
+    //PUT api/diretores
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Diretor>> Put(long id, [FromBody] Diretor diretor)
     {
-        var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == id);
+        diretor.Id = id;
+        _context.Diretores.Update(diretor);
+        await _context.SaveChangesAsync();
+
         return Ok(diretor);
     }
 
+    //DELETE api/diretores/id
     [HttpDelete("{id}")]
-    public ActionResult Delete(int id)
+    public async Task<ActionResult> Delete(long id)
     {
         var diretor = _context.Diretores.FirstOrDefault(diretor => diretor.Id == id);
         _context.Remove(diretor);
-        _context.SaveChangesAsync();
-        return Ok();
-    }
+        await _context.SaveChangesAsync();
 
+        return Ok(diretor);
+    }
 }

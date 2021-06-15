@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Filmes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210614223150_PrimeiraVersao")]
+    [Migration("20210614235752_PrimeiraVersao")]
     partial class PrimeiraVersao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
