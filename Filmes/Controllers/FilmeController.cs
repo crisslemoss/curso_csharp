@@ -20,10 +20,34 @@ public class FilmeController : ControllerBase
         return await _context.Filmes.ToListAsync();
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Filme>> Get(long id)
+    {
+        var filme = await _context.Filmes.FirstOrDefaultAsync(filme => filme.Id == id);
+        return Ok(filme);
+    }
+
     [HttpPost]
     public async Task<ActionResult<Filme>> Post([FromBody] Filme filme)
     {
+        var diretor = _context.Diretores.Find(filme.DiretorId);
+
+        if (diretor == null)
+        {
+            return Conflict("Diretor nao cadastrado!");
+        }
+
         _context.Filmes.Add(filme);
+        await _context.SaveChangesAsync();
+
+        return Ok(filme);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Filme>> Put(int id, [FromBody] Filme filme)
+    {
+        filme.Id = id;
+        _context.Filmes.Update(filme);
         await _context.SaveChangesAsync();
 
         return Ok(filme);
