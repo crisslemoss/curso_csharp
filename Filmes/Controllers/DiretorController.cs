@@ -14,19 +14,23 @@ public class DiretorController : ControllerBase
         _context = context;
     }
 
-    // GET api/diretores
     [HttpGet]
-    public async Task<List<Diretor>> Get()
+    public async Task<ActionResult<DiretorOutputGetAllDTO>> Get()
     {
-        return await _context.Diretores.ToListAsync();
+        var diretor = await _context.Diretores.ToListAsync();
+        var diretorOutputGetAllDTO = new DiretorOutputGetAllDTO(diretor);
+
+        return diretorOutputGetAllDTO;
     }
 
-    // GET api/diretores/1
     [HttpGet("{id}")]
-    public async Task<ActionResult<Diretor>> Get(long id)
+    public async Task<ActionResult<DiretorOutputGetIdDTO>> Get(long id)
     {
         var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == id);
-        return Ok(diretor);
+
+        var diretorOutputGetIdDTO = new DiretorOutputGetIdDTO(diretor.Id);
+
+        return Ok(diretorOutputGetIdDTO);
     }
 
     // POST api/diretores
@@ -61,6 +65,6 @@ public class DiretorController : ControllerBase
         var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == id);
         _context.Remove(diretor);
         await _context.SaveChangesAsync();
-        return Ok(diretor);
+        return Ok();
     }
 }
