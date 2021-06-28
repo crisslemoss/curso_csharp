@@ -16,13 +16,16 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<FilmeOutputGetAllDTO>> Get()
-    {
-        var filme = await _context.Filmes.ToListAsync();
-        var filmeOutputGetAllDTO = new FilmeOutputGetAllDTO(filme);
+    public async Task<List<FilmeOutputGetAllDTO>> Get() {
+        var filmes = await _context.Filmes.ToListAsync();
 
-        return filmeOutputGetAllDTO;
-    }
+        var outputDTOList = new List<FilmeOutputGetAllDTO>();
+
+        foreach (Filme filme in filmes) {
+            outputDTOList.Add(new FilmeOutputGetAllDTO(filme.Id, filme.Titulo));
+        }
+        return outputDTOList;
+    }    
 
     [HttpGet("{id}")]
     public async Task<ActionResult<FilmeOutputGetIdDTO>> Get(int id)

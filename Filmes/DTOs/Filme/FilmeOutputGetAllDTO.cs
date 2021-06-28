@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 public class FilmeOutputGetAllDTO
 {
-    public ICollection<Filme> Filmes { get; set; }
+    public int Id {get; set;}
+    public string Titulo {get; set;}
 
-    public FilmeOutputGetAllDTO(List<Filme> filme)
+    public FilmeOutputGetAllDTO(int id, string titulo)
     {
-        Filmes = filme;
+        Id = id;
+        Titulo = titulo;
     }
 }
