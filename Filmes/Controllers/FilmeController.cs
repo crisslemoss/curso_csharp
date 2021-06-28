@@ -37,9 +37,8 @@ public class FilmeController : ControllerBase
 
         var filmeOutPutGetId = new FilmeOutputGetIdDTO(filme.Titulo, filme.Ano, filme.Genero, diretor.Nome);
         return Ok(filmeOutPutGetId);
-    }
-    
-        
+    }    
+   
     [HttpPost]
     public async Task<ActionResult<FilmeOutputPostDTO>> Post([FromBody] FilmeInputPostDTO  filmeInputDTO)
     {
@@ -67,7 +66,6 @@ public class FilmeController : ControllerBase
             return NotFound("Id diretor invalido!");            
         }
 
-
         var filme = new Filme(filmeInputPutDTO.Titulo, filmeInputPutDTO.DiretorId);
         filme.Id = id;
         _context.Filmes.Update(filme);
@@ -76,7 +74,6 @@ public class FilmeController : ControllerBase
         var filmeOutputPutDTO = new FilmeOutputPutDTO(filme.Titulo, filme.Ano, filme.Genero, filme.DiretorId);
         return Ok(filmeOutputPutDTO);
     }
-
 
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)

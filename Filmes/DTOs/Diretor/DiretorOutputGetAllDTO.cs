@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+
 public class DiretorOutputGetAllDTO
 {
-    public ICollection<Diretor> Diretores { get; set; }
+    public long Id {get; set;}
+    public string Nome {get; set;}
 
-    public DiretorOutputGetAllDTO(List<Diretor> diretor)
+    public DiretorOutputGetAllDTO(long id, string nome)
     {
-        Diretores = diretor;
+        Id = id;
+        Nome = nome;
     }
 }
