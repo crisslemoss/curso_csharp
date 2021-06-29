@@ -1,15 +1,12 @@
 public class FilmeOutputGetIdDTO
 {
+    public int Id { get; set; }
     public string Titulo { get; set; }
-    public string Ano { get; set; }
-    public string Genero { get; set; }
-    public string Diretor { get; set; }
+    public string NomeDoDiretor { get; set; }
 
-    public FilmeOutputGetIdDTO(string ano, string titulo, string genero, string diretor)
-    {
+    public FilmeOutputGetIdDTO(int id, string titulo, string nomeDoDiretor) {
+        Id = id;
         Titulo = titulo;
-        Ano = ano;
-        Genero = genero;
-        Diretor = diretor;
+        NomeDoDiretor = nomeDoDiretor;
     }
 }

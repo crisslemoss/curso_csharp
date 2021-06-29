@@ -30,6 +30,12 @@ public class FilmeController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<FilmeOutputGetIdDTO>> Get(int id)
     {
+        var filme = await _context.Filmes.Include(filme => filme.Diretor).FirstOrDefaultAsync(filme => filme.Id == id);
+
+        var outputDTO = new FilmeOutputGetIdDTO(filme.Id, filme.Titulo, filme.Diretor.Nome);
+        return Ok(outputDTO);
+
+        /*
         var filme = await _context.Filmes.FirstOrDefaultAsync(filme => filme.Id == id);
         if (filme == null)
         {
@@ -40,6 +46,7 @@ public class FilmeController : ControllerBase
 
         var filmeOutPutGetId = new FilmeOutputGetIdDTO(filme.Titulo, filme.Ano, filme.Genero, diretor.Nome);
         return Ok(filmeOutPutGetId);
+        */
     }    
    
     [HttpPost]
