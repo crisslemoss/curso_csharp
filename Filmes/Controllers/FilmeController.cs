@@ -22,7 +22,7 @@ public class FilmeController : ControllerBase
         var outputDTOList = new List<FilmeOutputGetAllDTO>();
 
         foreach (Filme filme in filmes) {
-            outputDTOList.Add(new FilmeOutputGetAllDTO(filme.Id, filme.Titulo));
+            outputDTOList.Add(new FilmeOutputGetAllDTO(filme.Id, filme.Titulo, filme.Ano, filme.Genero));
         }
         return outputDTOList;
     }    

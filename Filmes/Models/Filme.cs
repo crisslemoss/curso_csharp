@@ -1,10 +1,5 @@
 public class Filme
 {
-    public Filme(string titulo)
-    {
-        Titulo = titulo;
-    }
-
     public Filme(string titulo, long diretorId)
     {
         Titulo = titulo;
