@@ -1,9 +1,6 @@
-<h1 align="center">
-     ♻️ <a href="#" alt="site do ecoleta"> Curso Pragmático de C# </a>
-</h1>
+# Curso Pragmático de Csharp
 
-
-# Tabela de conteúdos
+## Tabela de conteúdos
 
 <!--ts-->
 
