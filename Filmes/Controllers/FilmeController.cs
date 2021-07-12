@@ -53,10 +53,11 @@ public class FilmeController : ControllerBase
     ///     }
     ///
     /// </remarks>
-    /// <param id="Id">Id do filme</param>
-    /// <returns>O filme encontrato</returns>
-    /// <response code="200">filme encontrado com sucesso</response>
-    /// <response code="404">filme não encontrado!</response>
+    /// <param name="id">Id do filme</param>
+    /// <response code="200">Retorna uma lista de filmes selecionados.</response>     
+    /// <response code="403">Você não tem permissão de acesso nesse servidor.</response>
+    /// <response code="404">Não foram encontrados registros.</response>
+    /// <response code="500">A solicitação não foi concluída devido a um erro interno no lado do servidor.</response>
     [HttpGet("{id}")]
     public async Task<ActionResult<FilmeOutputGetAllDTO>> Get(int id)
     {
