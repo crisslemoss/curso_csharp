@@ -1,3 +1,5 @@
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,47 +17,85 @@ public class FilmeController : ControllerBase
         _context = context;
     }
 
+    /// <summary>
+    /// Lista os filmes
+    /// </summary>            
+    /// <response code="200">Lista de filmes exibida</response>
     [HttpGet]
-    public async Task<List<FilmeOutputGetAllDTO>> Get() {
+    public async Task<List<FilmeOutputGetAllDTO>> Get()
+    {
         var filmes = await _context.Filmes.ToListAsync();
+
+        if (!filmes.Any())
+        {
+            NotFound("Não existem diretores cadastrados!");
+        }
 
         var outputDTOList = new List<FilmeOutputGetAllDTO>();
 
-        foreach (Filme filme in filmes) {
+        foreach (Filme filme in filmes)
+        {
             outputDTOList.Add(new FilmeOutputGetAllDTO(filme.Id, filme.Titulo, filme.Ano, filme.Genero));
         }
-        return outputDTOList;
-    }    
 
+        return outputDTOList;
+    }
+
+    /// <summary>
+    /// Busca um filme por Id
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /filme / {id}
+    ///     {
+    ///        "id": 1,
+    ///     }
+    ///
+    /// </remarks>
+    /// <param id="Id">Id do filme</param>
+    /// <returns>O filme encontrato</returns>
+    /// <response code="200">filme encontrado com sucesso</response>
+    /// <response code="404">filme não encontrado!</response>
     [HttpGet("{id}")]
-    public async Task<ActionResult<FilmeOutputGetIdDTO>> Get(int id)
+    public async Task<ActionResult<FilmeOutputGetAllDTO>> Get(int id)
     {
         var filme = await _context.Filmes.Include(filme => filme.Diretor).FirstOrDefaultAsync(filme => filme.Id == id);
+
+        if (filme == null)
+        {
+            throw new ArgumentNullException("Filme não encontrado!");
+        }
 
         var outputDTO = new FilmeOutputGetIdDTO(filme.Id, filme.Titulo, filme.Diretor.Nome);
         return Ok(outputDTO);
 
-        /*
-        var filme = await _context.Filmes.FirstOrDefaultAsync(filme => filme.Id == id);
-        if (filme == null)
-        {
-            return Conflict("Filme nao cadastrado!");
-        }
-         
-        var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == filme.DiretorId);
+    }
 
-        var filmeOutPutGetId = new FilmeOutputGetIdDTO(filme.Titulo, filme.Ano, filme.Genero, diretor.Nome);
-        return Ok(filmeOutPutGetId);
-        */
-    }    
-   
+    /// <summary>
+    /// Cria um filme
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /filme
+    ///     {
+    ///         "titulo": "Silencio",
+    ///         "ano": "2016",
+    ///         "genero": "Drama",
+    ///         "diretorId": 1
+    ///     }
+    ///
+    /// </remarks>    
+    /// <returns>O filme criado</returns>
+    /// <response code="200">Filme foi criado com sucesso</response>    
     [HttpPost]
-    public async Task<ActionResult<FilmeOutputPostDTO>> Post([FromBody] FilmeInputPostDTO  filmeInputDTO)
+    public async Task<ActionResult<FilmeOutputPostDTO>> Post([FromBody] FilmeInputPostDTO filmeInputDTO)
     {
         var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == filmeInputDTO.DiretorId);
         if (diretor == null)
         {
-            return NotFound("Diretor não encontrado!");            
+            return NotFound("Diretor não encontrado!");
         }
 
         var filme = new Filme(filmeInputDTO.Titulo, filmeInputDTO.DiretorId);
@@ -63,17 +103,36 @@ public class FilmeController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        var filmeOutputDTO = new FilmeOutputPostDTO(filme.Id, filme.Titulo); 
+        var filmeOutputDTO = new FilmeOutputPostDTO(filme.Id, filme.Titulo);
         return Ok(filmeOutputDTO);
     }
 
+    /// <summary>
+    /// Edita um filme
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /filme
+    ///     {
+    ///         "titulo": "Silencio",
+    ///         "ano": "2016",
+    ///         "genero": "Drama",
+    ///         "diretorId": 1
+    ///     }
+    ///
+    /// </remarks>
+    /// <param name="id">Id do filme </param>    
+    /// <returns>O filme criado</returns>
+    /// <response code="200">Filme foi criado com sucesso</response>
+    /// <response code="500">Filme não encontrado</response>
     [HttpPut("{id}")]
     public async Task<ActionResult<FilmeOutputPutDTO>> Put(int id, [FromBody] FilmeInputPutDTO filmeInputPutDTO)
     {
         var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == filmeInputPutDTO.DiretorId);
         if (diretor == null)
         {
-            return NotFound("Id diretor invalido!");            
+            return NotFound("Id diretor invalido!");
         }
 
         var filme = new Filme(filmeInputPutDTO.Titulo, filmeInputPutDTO.DiretorId);
