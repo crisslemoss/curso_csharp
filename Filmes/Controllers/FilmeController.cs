@@ -53,8 +53,8 @@ public class FilmeController : ControllerBase
     ///     }
     ///
     /// </remarks>
-    /// <param name="id">Id do filme</param>
-    /// <response code="200">Retorna uma lista de filmes selecionados.</response>     
+    /// <param name="id">Id do filme a ser buscado</param>
+    /// <response code="200">Filme encontrado com sucesso</response>     
     /// <response code="403">Você não tem permissão de acesso nesse servidor.</response>
     /// <response code="404">Não foram encontrados registros.</response>
     /// <response code="500">A solicitação não foi concluída devido a um erro interno no lado do servidor.</response>
@@ -89,7 +89,7 @@ public class FilmeController : ControllerBase
     ///
     /// </remarks>    
     /// <returns>O filme criado</returns>
-    /// <response code="200">Filme foi criado com sucesso</response>    
+    /// <response code="200">Filme foi criado com sucesso</response>        
     [HttpPost]
     public async Task<ActionResult<FilmeOutputPostDTO>> Post([FromBody] FilmeInputPostDTO filmeInputDTO)
     {
