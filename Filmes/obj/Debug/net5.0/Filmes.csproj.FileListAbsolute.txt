@@ -55,3 +55,8 @@ D:\01_Projetos\curso_csharp\Filmes\obj\Debug\net5.0\Filmes.dll
 D:\01_Projetos\curso_csharp\Filmes\obj\Debug\net5.0\ref\Filmes.dll
 D:\01_Projetos\curso_csharp\Filmes\obj\Debug\net5.0\Filmes.pdb
 D:\01_Projetos\curso_csharp\Filmes\obj\Debug\net5.0\Filmes.genruntimeconfig.cache
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Filmes.xml
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\FluentValidation.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\01_Projetos\curso_csharp\Filmes\obj\Debug\net5.0\Filmes.xml
