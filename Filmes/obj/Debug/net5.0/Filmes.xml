@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Filmes</name>
+    </assembly>
+    <members>
+        <member name="M:DiretorController.Get">
+            <summary>
+            Lista os diretores
+            </summary>            
+            <response code="200">Lista de diretor exibida</response>
+        </member>
+        <member name="M:DiretorController.Get(System.Int64)">
+             <summary>
+             Busca um diretor por Id
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /diretor / {id}
+                 {
+                    "id": 1,
+                 }
+            
+             </remarks>
+             <param id="Id">Id do diretor</param>
+             <returns>O diretor encontrato</returns>
+             <response code="200">Diretor encontrado com sucesso</response>
+             <response code="404">Diretor não encontrado!</response>
+        </member>
+        <member name="M:DiretorController.Post(DiretorInputPostDTO)">
+             <summary>
+             Cria um diretor
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /diretor
+                 {
+                    "nome": "Martin Scorsese",
+                 }
+            
+             </remarks>    
+             <returns>O diretor criado</returns>
+             <response code="200">Diretor foi criado com sucesso</response>    
+        </member>
+        <member name="M:DiretorController.Put(System.Int64,DiretorInputPutDTO)">
+             <summary>
+             Edita um diretor
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /diretor
+                 {
+                    "id": 1,
+                    "nome": "Martin Scorsese",
+                 }
+            
+             </remarks>
+             <param name="id">Id do diretor </param>    
+             <returns>O diretor criado</returns>
+             <response code="200">Diretor foi criado com sucesso</response>
+             <response code="500">Diretor não encontrado</response>
+        </member>
+        <member name="M:FilmeController.Get">
+            <summary>
+            Lista os filmes
+            </summary>            
+            <response code="200">Lista de filmes exibida</response>
+        </member>
+        <member name="M:FilmeController.Get(System.Int32)">
+             <summary>
+             Busca um filme por Id
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /filme / {id}
+                 {
+                    "id": 1,
+                 }
+            
+             </remarks>
+             <param name="id">Id do filme a ser buscado</param>
+             <response code="200">Filme encontrado com sucesso</response>     
+             <response code="403">Você não tem permissão de acesso nesse servidor.</response>
+             <response code="404">Não foram encontrados registros.</response>
+             <response code="500">A solicitação não foi concluída devido a um erro interno no lado do servidor.</response>
+        </member>
+        <member name="M:FilmeController.Post(FilmeInputPostDTO)">
+             <summary>
+             Cria um filme
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /filme
+                 {
+                     "titulo": "Silencio",
+                     "ano": "2016",
+                     "genero": "Drama",
+                     "diretorId": 1
+                 }
+            
+             </remarks>    
+             <returns>O filme criado</returns>
+             <response code="200">Filme foi criado com sucesso</response>        
+        </member>
+        <member name="M:FilmeController.Put(System.Int32,FilmeInputPutDTO)">
+             <summary>
+             Edita um filme
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /filme
+                 {
+                     "titulo": "Silencio",
+                     "ano": "2016",
+                     "genero": "Drama",
+                     "diretorId": 1
+                 }
+            
+             </remarks>
+             <param name="id">Id do filme </param>    
+             <returns>O filme criado</returns>
+             <response code="200">Filme foi criado com sucesso</response>
+             <response code="500">Filme não encontrado</response>
+        </member>
+    </members>
+</doc>
