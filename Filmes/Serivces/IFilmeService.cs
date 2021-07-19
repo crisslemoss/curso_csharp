@@ -7,5 +7,5 @@ public interface IFilmeServico
     Task<Filme> BuscaId(int id);
     Task<long> Cria(Filme filme);
     Task<Filme> Atualiza(Filme filme);
-    Task<bool> Exclui(int id);
+    Task Exclui(int id);
 }

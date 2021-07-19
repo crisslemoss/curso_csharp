@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 [Route("[controller]")]
 public class FilmeController : ControllerBase
 {
-    private readonly FilmeServico _filmeServico;
+    private readonly FilmeServico _filmeService;
 
-    public FilmeController(FilmeServico filmeServico)
+    public FilmeController(FilmeServico filmeService)
     {
-        _filmeServico = filmeServico;
+        _filmeService = filmeService;
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public class FilmeController : ControllerBase
     [HttpGet]
     public async Task<List<FilmeOutputGetAllDTO>> Get()
     {
-        var filmes = await _filmeServico.Buscatodos();
+        var filmes = await _filmeService.Buscatodos();
 
         if (!filmes.Any())
         {
@@ -59,9 +59,9 @@ public class FilmeController : ControllerBase
     /// <response code="404">Não foram encontrados registros.</response>
     /// <response code="500">A solicitação não foi concluída devido a um erro interno no lado do servidor.</response>
     [HttpGet("{id}")]
-    public async Task<ActionResult<FilmeOutputGetAllDTO>> Get(int id)
+    public async Task<ActionResult<FilmeOutputGetAllDTO>> GetById(int id)
     {
-        var filme = await _filmeServico.BuscaId(id);
+        var filme = await _filmeService.BuscaId(id);
 
         if (filme == null)
         {
@@ -92,10 +92,10 @@ public class FilmeController : ControllerBase
         [HttpPost]
         public async Task<ActionResult<FilmeOutputPostDTO>> Post([FromBody] FilmeInputPostDTO filmeInputDTO)
         {
-            var diretor = await _filmeServico.Cria
-            var diretor = await _filmeServico.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == filmeInputDTO.DiretorId);
+            var diretor = await _filmeService.Cria()
+                var diretor = await _filmeService.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == filmeInputDTO.DiretorId);
 
-            var diretor = await _filmeServico.Cria(FilmeInputPostDTO filmeInputDTO);
+            var diretor = await _filmeService.Cria(FilmeInputPostDTO filmeInputDTO);
 
             if (diretor == null)
             {
@@ -103,9 +103,9 @@ public class FilmeController : ControllerBase
             }
 
             var filme = new Filme(filmeInputDTO.Titulo, filmeInputDTO.DiretorId);
-            _context.Filmes.Add(filme);
+            _filmeService.Filmes.Add(filme);
 
-            await _context.SaveChangesAsync();
+            await _filmeService.SaveChangesAsync();
 
             var filmeOutputDTO = new FilmeOutputPostDTO(filme.Id, filme.Titulo);
             return Ok(filmeOutputDTO);
@@ -133,7 +133,7 @@ public class FilmeController : ControllerBase
         [HttpPut("{id}")]
         public async Task<ActionResult<FilmeOutputPutDTO>> Put(int id, [FromBody] FilmeInputPutDTO filmeInputPutDTO)
         {
-            var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == filmeInputPutDTO.DiretorId);
+            var diretor = await _filmeService.GetById(filmeInputPutDTO.DiretorId);
             if (diretor == null)
             {
                 return NotFound("Id diretor invalido!");
@@ -141,8 +141,8 @@ public class FilmeController : ControllerBase
 
             var filme = new Filme(filmeInputPutDTO.Titulo, filmeInputPutDTO.DiretorId);
             filme.Id = id;
-            _context.Filmes.Update(filme);
-            await _context.SaveChangesAsync();
+            _filmeService.Filmes.Update(filme);
+            await _filmeService.SaveChangesAsync();
 
             var filmeOutputPutDTO = new FilmeOutputPutDTO(filme.Titulo, filme.Ano, filme.Genero, filme.DiretorId);
 
@@ -152,7 +152,7 @@ public class FilmeController : ControllerBase
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)
     {
-        _filmeServico.Exclui(id);
+        _filmeService.Exclui(id);
 
         return Ok();
     }

@@ -30,11 +30,10 @@ public class FilmeServico : IFilmeServico
         throw new System.NotImplementedException();
     }
 
-    public Task<bool> Exclui(int id)
+    public async Task Exclui(int id)
     {
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
         _context.Remove(filme);
-        _context.SaveChangesAsync();
-        return true;
+        await _context.SaveChangesAsync();
     }
 }
