@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 [Route("[controller]")]
 public class DiretorController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDiretorService _diretorService;
 
-    public DiretorController(ApplicationDbContext context)
+    public DiretorController(DiretorService diretorService)
     {
-        _context = context;
+        _diretorService = diretorService;
     }
 
     /// <summary>
@@ -23,12 +23,7 @@ public class DiretorController : ControllerBase
     [HttpGet]
     public async Task<List<DiretorOutputGetAllDTO>> Get()
     {
-        var diretores = await _context.Diretores.ToListAsync();
-
-        if (!diretores.Any())
-        {
-            NotFound("Não existem diretores cadastrados!");
-        }
+        var diretores = await _diretorService.GetAll();
 
         var outputDTOList = new List<DiretorOutputGetAllDTO>();
 
@@ -59,12 +54,7 @@ public class DiretorController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<DiretorOutputGetIdDTO>> Get(long id)
     {
-        var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == id);
-
-        if (diretor == null)
-        {
-            return NotFound("Diretor não encontrado!");
-        }
+        var diretor = await _diretorService.GetById(id);
 
         var diretorOutputGetIdDTO = new DiretorOutputGetIdDTO(diretor.Id);
 
@@ -90,7 +80,7 @@ public class DiretorController : ControllerBase
     public async Task<ActionResult<DiretorOutputPostDTO>> Post([FromBody] DiretorInputPostDTO diretorInputPostDTO)
     {
         var diretor = new Diretor(diretorInputPostDTO.Nome);
-        _context.Diretores.Add(diretor);
+        _diretorService.Diretores.Add(diretor);
 
         await _context.SaveChangesAsync();
 
@@ -130,11 +120,10 @@ public class DiretorController : ControllerBase
 
     // DELETE api/diretores/{id}
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(long id)
+    public ActionResult Delete(long id)
     {
-        var diretor = await _context.Diretores.FirstOrDefaultAsync(diretor => diretor.Id == id);
-        _context.Remove(diretor);
-        await _context.SaveChangesAsync();
+        _diretorService.Remove(id);
+
         return Ok();
     }
 }
