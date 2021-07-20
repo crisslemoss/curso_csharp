@@ -1261,11 +1261,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
+      "projectUniqueName": "d:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
       "projectName": "Filmes",
-      "projectPath": "D:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
+      "projectPath": "d:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
       "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-      "outputPath": "D:\\01_Projetos\\curso_csharp\\Filmes\\obj\\",
+      "outputPath": "d:\\01_Projetos\\curso_csharp\\Filmes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
