@@ -4,15 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("[controller]")]
 public class FilmeController : ControllerBase
 {
-    private readonly FilmeServico _filmeService;
+    private readonly FilmeService _filmeService;
 
-    public FilmeController(FilmeServico filmeService)
+    public FilmeController(FilmeService filmeService)
     {
         _filmeService = filmeService;
     }

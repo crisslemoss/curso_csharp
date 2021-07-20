@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 public class DiretorService : IDiretorService
 {
     private readonly ApplicationDbContext _context;
+
     private readonly IDiretorService _diretorService;
 
     public DiretorService(ApplicationDbContext context)

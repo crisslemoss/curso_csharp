@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public class FilmeServico : IFilmeServico
+public class FilmeService : IFilmeService
 {
     private readonly ApplicationDbContext _context;
-    public FilmeServico(ApplicationDbContext context)
+    public FilmeService(ApplicationDbContext context)
     {
         _context = context;
     }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 [Route("[controller]")]
 public class DiretorController : ControllerBase
 {
-    private readonly IDiretorService _diretorService;
+    private readonly DiretorService _diretorService;
 
     public DiretorController(DiretorService diretorService)
     {
@@ -61,68 +61,68 @@ public class DiretorController : ControllerBase
         return Ok(diretorOutputGetIdDTO);
     }
 
+    /*
+        /// <summary>
+        /// Cria um diretor
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /diretor
+        ///     {
+        ///        "nome": "Martin Scorsese",
+        ///     }
+        ///
+        /// </remarks>    
+        /// <returns>O diretor criado</returns>
+        /// <response code="200">Diretor foi criado com sucesso</response>    
+        [HttpPost]
+        public async Task<ActionResult<DiretorOutputPostDTO>> Post([FromBody] DiretorInputPostDTO diretorInputPostDTO)
+        {
+            var diretor = new Diretor(diretorInputPostDTO.Nome);
+            _diretorService.Cria();
 
-    /// <summary>
-    /// Cria um diretor
-    /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /diretor
-    ///     {
-    ///        "nome": "Martin Scorsese",
-    ///     }
-    ///
-    /// </remarks>    
-    /// <returns>O diretor criado</returns>
-    /// <response code="200">Diretor foi criado com sucesso</response>    
-    [HttpPost]
-    public async Task<ActionResult<DiretorOutputPostDTO>> Post([FromBody] DiretorInputPostDTO diretorInputPostDTO)
-    {
-        var diretor = new Diretor(diretorInputPostDTO.Nome);
-        _diretorService.Diretores.Add(diretor);
+            await _context.SaveChangesAsync();
 
-        await _context.SaveChangesAsync();
-
-        var DiretorOutputDTO = new DiretorOutputPostDTO(diretor.Id, diretor.Nome);
-        return Ok(DiretorOutputDTO);
-    }
+            var DiretorOutputDTO = new DiretorOutputPostDTO(diretor.Id, diretor.Nome);
+            return Ok(DiretorOutputDTO);
+        }
 
 
-    /// <summary>
-    /// Edita um diretor
-    /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /diretor
-    ///     {
-    ///        "id": 1,
-    ///        "nome": "Martin Scorsese",
-    ///     }
-    ///
-    /// </remarks>
-    /// <param name="id">Id do diretor </param>    
-    /// <returns>O diretor criado</returns>
-    /// <response code="200">Diretor foi criado com sucesso</response>
-    /// <response code="500">Diretor não encontrado</response>
-    [HttpPut("{id}")]
-    public async Task<ActionResult<DiretorOutputPutDTO>> Put(long id, [FromBody] DiretorInputPutDTO diretorInputPutDTO)
-    {
-        var diretor = new Diretor(diretorInputPutDTO.Nome);
-        diretor.Id = id;
-        _context.Diretores.Update(diretor);
-        await _context.SaveChangesAsync();
+        /// <summary>
+        /// Edita um diretor
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /diretor
+        ///     {
+        ///        "id": 1,
+        ///        "nome": "Martin Scorsese",
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="id">Id do diretor </param>    
+        /// <returns>O diretor criado</returns>
+        /// <response code="200">Diretor foi criado com sucesso</response>
+        /// <response code="500">Diretor não encontrado</response>
+        [HttpPut("{id}")]
+        public async Task<ActionResult<DiretorOutputPutDTO>> Put(long id, [FromBody] DiretorInputPutDTO diretorInputPutDTO)
+        {
+            var diretor = new Diretor(diretorInputPutDTO.Nome);
+            diretor.Id = id;
+            _context.Diretores.Update(diretor);
+            await _context.SaveChangesAsync();
 
-        var diretorOutputPutDTO = new DiretorOutputPutDTO(diretor.Nome);
-        return Ok(diretorOutputPutDTO);
-    }
+            var diretorOutputPutDTO = new DiretorOutputPutDTO(diretor.Nome);
+            return Ok(diretorOutputPutDTO);
+        }*/
 
     // DELETE api/diretores/{id}
     [HttpDelete("{id}")]
     public ActionResult Delete(long id)
     {
-        _diretorService.Remove(id);
+        _diretorService.Exlcui(id);
 
         return Ok();
     }

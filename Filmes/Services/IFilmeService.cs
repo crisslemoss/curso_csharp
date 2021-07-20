@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public interface IFilmeServico
+public interface IFilmeService
 {
     Task<List<Filme>> Buscatodos();
     Task<Filme> BuscaId(int id);
