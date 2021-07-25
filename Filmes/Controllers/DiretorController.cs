@@ -1,7 +1,10 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,114 +19,62 @@ public class DiretorController : ControllerBase
         _diretorService = diretorService;
     }
 
-    /// <summary>
-    /// Lista os diretores
-    /// </summary>            
-    /// <response code="200">Lista de diretor exibida</response>
+    // GET api/diretores
     [HttpGet]
-    public async Task<List<DiretorOutputGetAllDTO>> Get()
+    public async Task<ActionResult<DiretorListOutputGetAllDTO>> Get(CancellationToken cancellationToken, int limit = 5, int page = 1)
     {
-        var diretores = await _diretorService.GetAll();
-
-        var outputDTOList = new List<DiretorOutputGetAllDTO>();
-
-        foreach (Diretor diretor in diretores)
-        {
-            outputDTOList.Add(new DiretorOutputGetAllDTO(diretor.Id, diretor.Nome));
-        }
-
-        return outputDTOList;
+        return await _diretorService.GetByPageAsync(limit, page, cancellationToken);
     }
 
-    /// <summary>
-    /// Busca um diretor por Id
-    /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /diretor / {id}
-    ///     {
-    ///        "id": 1,
-    ///     }
-    ///
-    /// </remarks>
-    /// <param id="Id">Id do diretor</param>
-    /// <returns>O diretor encontrato</returns>
-    /// <response code="200">Diretor encontrado com sucesso</response>
-    /// <response code="404">Diretor não encontrado!</response>
+    // GET api/diretores/1
     [HttpGet("{id}")]
     public async Task<ActionResult<DiretorOutputGetIdDTO>> Get(long id)
     {
         var diretor = await _diretorService.GetById(id);
 
-        var diretorOutputGetIdDTO = new DiretorOutputGetIdDTO(diretor.Id);
-
-        return Ok(diretorOutputGetIdDTO);
+        var outputDto = new DiretorOutputGetIdDTO(diretor.Id, diretor.Nome);
+        return Ok(outputDto);
     }
 
-    /*
-        /// <summary>
-        /// Cria um diretor
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     POST /diretor
-        ///     {
-        ///        "nome": "Martin Scorsese",
-        ///     }
-        ///
-        /// </remarks>    
-        /// <returns>O diretor criado</returns>
-        /// <response code="200">Diretor foi criado com sucesso</response>    
-        [HttpPost]
-        public async Task<ActionResult<DiretorOutputPostDTO>> Post([FromBody] DiretorInputPostDTO diretorInputPostDTO)
-        {
-            var diretor = new Diretor(diretorInputPostDTO.Nome);
-            _diretorService.Cria();
+    /// <summary>
+    /// Cria um diretor
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /diretor
+    ///     {
+    ///        "nome": "Martin Scorsese"
+    ///     }
+    ///
+    /// </remarks>
+    /// <param name="diretorInputDto">Nome do diretor</param>
+    /// <returns>O diretor criado</returns>
+    /// <response code="200">Diretor foi criado com sucesso</response>
+    [HttpPost]
+    public async Task<ActionResult<DiretorOutputPostDTO>> Post([FromBody] DiretorInputPostDTO diretorInputDto)
+    {
+        var diretor = await _diretorService.Cria(new Diretor(diretorInputDto.Nome));
 
-            await _context.SaveChangesAsync();
+        var diretorOutputDto = new DiretorOutputPostDTO(diretor.Id, diretor.Nome);
+        return Ok(diretorOutputDto);
+    }
 
-            var DiretorOutputDTO = new DiretorOutputPostDTO(diretor.Id, diretor.Nome);
-            return Ok(DiretorOutputDTO);
-        }
+    // PUT api/diretores/{id}
+    [HttpPut("{id}")]
+    public async Task<ActionResult<DiretorOutputPutDTO>> Put(long id, [FromBody] DiretorInputPutDTO diretorInputDto)
+    {
+        var diretor = await _diretorService.Atualiza(new Diretor(diretorInputDto.Nome), id);
 
-
-        /// <summary>
-        /// Edita um diretor
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     POST /diretor
-        ///     {
-        ///        "id": 1,
-        ///        "nome": "Martin Scorsese",
-        ///     }
-        ///
-        /// </remarks>
-        /// <param name="id">Id do diretor </param>    
-        /// <returns>O diretor criado</returns>
-        /// <response code="200">Diretor foi criado com sucesso</response>
-        /// <response code="500">Diretor não encontrado</response>
-        [HttpPut("{id}")]
-        public async Task<ActionResult<DiretorOutputPutDTO>> Put(long id, [FromBody] DiretorInputPutDTO diretorInputPutDTO)
-        {
-            var diretor = new Diretor(diretorInputPutDTO.Nome);
-            diretor.Id = id;
-            _context.Diretores.Update(diretor);
-            await _context.SaveChangesAsync();
-
-            var diretorOutputPutDTO = new DiretorOutputPutDTO(diretor.Nome);
-            return Ok(diretorOutputPutDTO);
-        }*/
+        var diretorOutputDto = new DiretorOutputPutDTO(diretor.Id, diretor.Nome);
+        return Ok(diretorOutputDto);
+    }
 
     // DELETE api/diretores/{id}
     [HttpDelete("{id}")]
-    public ActionResult Delete(long id)
+    public async Task<ActionResult> Delete(long id)
     {
-        _diretorService.Exlcui(id);
-
+        await _diretorService.Exclui(id);
         return Ok();
     }
 }
