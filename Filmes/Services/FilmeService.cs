@@ -1,6 +1,5 @@
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +30,7 @@ public class FilmeService : IFilmeService
             CurrentPage = pagedModel.CurrentPage,
             TotalPages = pagedModel.TotalPages,
             TotalItems = pagedModel.TotalItems,
-            Items = pagedModel.Items.Select(filme => new FilmeListOutputGetAllDTO(filme.Id, filme.Titulo, filme.Ano, filme.Genero)).ToList()
+            Items = pagedModel.Items.Select(filme => new FilmeOutputGetAllDTO(filme.Id, filme.Titulo, filme.Ano, filme.Genero)).ToList()
         };
     }
 
