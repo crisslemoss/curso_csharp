@@ -60,3 +60,15 @@ D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\FluentValidation.dll
 D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
 D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\01_Projetos\curso_csharp\Filmes\obj\Debug\net5.0\Filmes.xml
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\01_Projetos\curso_csharp\Filmes\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

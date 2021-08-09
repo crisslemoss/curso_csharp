@@ -4,30 +4,6 @@
         <name>Filmes</name>
     </assembly>
     <members>
-        <member name="M:DiretorController.Get">
-            <summary>
-            Lista os diretores
-            </summary>            
-            <response code="200">Lista de diretor exibida</response>
-        </member>
-        <member name="M:DiretorController.Get(System.Int64)">
-             <summary>
-             Busca um diretor por Id
-             </summary>
-             <remarks>
-             Sample request:
-            
-                 GET /diretor / {id}
-                 {
-                    "id": 1,
-                 }
-            
-             </remarks>
-             <param id="Id">Id do diretor</param>
-             <returns>O diretor encontrato</returns>
-             <response code="200">Diretor encontrado com sucesso</response>
-             <response code="404">Diretor não encontrado!</response>
-        </member>
         <member name="M:DiretorController.Post(DiretorInputPostDTO)">
              <summary>
              Cria um diretor
@@ -37,39 +13,21 @@
             
                  POST /diretor
                  {
-                    "nome": "Martin Scorsese",
-                 }
-            
-             </remarks>    
-             <returns>O diretor criado</returns>
-             <response code="200">Diretor foi criado com sucesso</response>    
-        </member>
-        <member name="M:DiretorController.Put(System.Int64,DiretorInputPutDTO)">
-             <summary>
-             Edita um diretor
-             </summary>
-             <remarks>
-             Sample request:
-            
-                 POST /diretor
-                 {
-                    "id": 1,
-                    "nome": "Martin Scorsese",
+                    "nome": "Martin Scorsese"
                  }
             
              </remarks>
-             <param name="id">Id do diretor </param>    
+             <param name="diretorInputDto">Nome do diretor</param>
              <returns>O diretor criado</returns>
              <response code="200">Diretor foi criado com sucesso</response>
-             <response code="500">Diretor não encontrado</response>
         </member>
-        <member name="M:FilmeController.Get">
+        <member name="M:FilmeController.Get(System.Threading.CancellationToken,System.Int32,System.Int32)">
             <summary>
             Lista os filmes
             </summary>            
             <response code="200">Lista de filmes exibida</response>
         </member>
-        <member name="M:FilmeController.Get(System.Int32)">
+        <member name="M:FilmeController.GetById(System.Int32)">
              <summary>
              Busca um filme por Id
              </summary>
@@ -123,7 +81,8 @@
                  }
             
              </remarks>
-             <param name="id">Id do filme </param>    
+             <param name="id">Id do filme </param>
+             <param name="filmeInputPutDTO"></param>    
              <returns>O filme criado</returns>
              <response code="200">Filme foi criado com sucesso</response>
              <response code="500">Filme não encontrado</response>

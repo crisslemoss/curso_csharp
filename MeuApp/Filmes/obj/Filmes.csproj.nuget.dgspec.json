@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj": {}
+    "D:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj": {}
   },
   "projects": {
-    "d:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj": {
+    "D:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
+        "projectUniqueName": "D:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
         "projectName": "Filmes",
-        "projectPath": "d:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
+        "projectPath": "D:\\01_Projetos\\curso_csharp\\Filmes\\Filmes.csproj",
         "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "d:\\01_Projetos\\curso_csharp\\Filmes\\obj\\",
+        "outputPath": "D:\\01_Projetos\\curso_csharp\\Filmes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -50,6 +50,18 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[10.3.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
