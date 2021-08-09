@@ -117,6 +117,8 @@ namespace Filmes
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
