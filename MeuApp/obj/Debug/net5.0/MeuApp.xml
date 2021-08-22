@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MeuApp</name>
+    </assembly>
+    <members>
+        <member name="M:DiretorController.Post(DiretorInputPostDTO)">
+             <summary>
+             Cria um diretor
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /diretor
+                 {
+                    "nome": "Martin Scorsese"
+                 }
+            
+             </remarks>
+             <param name="diretorInputDto">Nome do diretor</param>
+             <returns>O diretor criado</returns>
+             <response code="200">Diretor foi criado com sucesso</response>
+        </member>
+    </members>
+</doc>
